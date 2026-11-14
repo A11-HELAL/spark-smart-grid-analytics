@@ -6,7 +6,7 @@ Governed by the Project Constitution:
 - Principle III: Explicit Schema Contract (Zero inferSchema)
 """
 
-from typing import Optional
+from typing import Any, Dict, Optional
 from pyspark.sql import SparkSession
 from pyspark.sql.types import DoubleType, StringType, StructField, StructType
 
@@ -101,3 +101,21 @@ def get_spark_session(
         )
 
     return builder.getOrCreate()
+
+
+# -----------------------------------------------------------------------------
+# 4. Explicit Dataset Loaders (Principle III: Enforces Zero inferSchema)
+# -----------------------------------------------------------------------------
+def load_meter_dataframe(spark: SparkSession, path: str):
+    """Loads smart meter CSV data enforcing METER_SCHEMA with zero inferSchema."""
+    return spark.read.schema(METER_SCHEMA).option("header", "true").csv(path)
+
+
+def load_household_dataframe(spark: SparkSession, path: str):
+    """Loads household CSV metadata enforcing HOUSEHOLD_SCHEMA with zero inferSchema."""
+    return spark.read.schema(HOUSEHOLD_SCHEMA).option("header", "true").csv(path)
+
+
+def load_weather_dataframe(spark: SparkSession, path: str):
+    """Loads weather CSV data enforcing WEATHER_SCHEMA with zero inferSchema."""
+    return spark.read.schema(WEATHER_SCHEMA).option("header", "true").csv(path)

@@ -54,23 +54,23 @@
 
 > **NOTE: Write these tests FIRST in `tests/test_rdd_ops.py` and ensure they FAIL before implementation.**
 
-- [ ] T012 [P] [US1] Write unit test for `filter_valid_meter_rows` in `tests/test_rdd_ops.py` asserting header, `"Null"` strings, negative values, and malformed rows are discarded
-- [ ] T013 [P] [US1] Write unit test for `map_to_household_kwh_pairs` in `tests/test_rdd_ops.py` asserting emission of `(LCLid, float(kwh))` tuples
-- [ ] T014 [P] [US1] Write unit test for `extract_tariff_acorn_tokens` in `tests/test_rdd_ops.py` asserting flattened token stream from household metadata
-- [ ] T015 [P] [US1] Write unit test for `find_peak_reading` in `tests/test_rdd_ops.py` asserting correct global maximum `(LCLid, max_kwh)` identification
-- [ ] T016 [P] [US1] Write unit test for `group_readings_by_household` in `tests/test_rdd_ops.py` asserting grouping into `(LCLid, [kwh_1, kwh_2, ...])`
-- [ ] T017 [P] [US1] Write unit test for `sum_kwh_by_household` in `tests/test_rdd_ops.py` asserting map-side combined totals equal expected arithmetic sums
-- [ ] T018 [P] [US1] Write unit test for `join_and_aggregate_by_tariff` in `tests/test_rdd_ops.py` asserting correct total and average consumption calculations for `"Std"` and `"ToU"`
+- [X] T012 [P] [US1] Write unit test for `filter_valid_meter_rows` in `tests/test_rdd_ops.py` asserting header, `"Null"` strings, negative values, and malformed rows are discarded
+- [X] T013 [P] [US1] Write unit test for `map_to_household_kwh_pairs` in `tests/test_rdd_ops.py` asserting emission of `(LCLid, float(kwh))` tuples
+- [X] T014 [P] [US1] Write unit test for `extract_tariff_acorn_tokens` in `tests/test_rdd_ops.py` asserting flattened token stream from household metadata
+- [X] T015 [P] [US1] Write unit test for `find_peak_reading` in `tests/test_rdd_ops.py` asserting correct global maximum `(LCLid, max_kwh)` identification
+- [X] T016 [P] [US1] Write unit test for `group_readings_by_household` in `tests/test_rdd_ops.py` asserting grouping into `(LCLid, [kwh_1, kwh_2, ...])`
+- [X] T017 [P] [US1] Write unit test for `sum_kwh_by_household` in `tests/test_rdd_ops.py` asserting map-side combined totals equal expected arithmetic sums
+- [X] T018 [P] [US1] Write unit test for `join_and_aggregate_by_tariff` in `tests/test_rdd_ops.py` asserting correct total and average consumption calculations for `"Std"` and `"ToU"`
 
 ### Implementation for User Story 1
 
-- [ ] T019 [US1] Implement pure function `filter_valid_meter_rows(raw_rdd)` in `src/rdd_ops.py` using `filter()` to discard headers, malformed rows, `"Null"` strings, and negative values ($kwh < 0.0$)
-- [ ] T020 [US1] Implement pure function `map_to_household_kwh_pairs(valid_rdd)` in `src/rdd_ops.py` using `map()` to emit `(LCLid, float(kwh))` key-value pairs
-- [ ] T021 [US1] Implement pure function `extract_tariff_acorn_tokens(household_rdd)` in `src/rdd_ops.py` using `flatMap()` to tokenize demographic and tariff fields
-- [ ] T022 [US1] Implement pure reduction function `find_peak_reading(pair_rdd)` in `src/rdd_ops.py` using `reduce()` with binary maximum comparator
-- [ ] T023 [US1] Implement pure grouping function `group_readings_by_household(pair_rdd)` in `src/rdd_ops.py` using `groupByKey().mapValues(list)`
-- [ ] T024 [US1] Implement pure aggregation function `sum_kwh_by_household(pair_rdd)` in `src/rdd_ops.py` using `reduceByKey(lambda a, b: a + b)`
-- [ ] T025 [US1] Implement pure join & aggregate function `join_and_aggregate_by_tariff(meter_totals_rdd, household_tariff_rdd)` in `src/rdd_ops.py` using `join()`, mapping, and bounded aggregation ($\le 100$ rows collected)
+- [X] T019 [US1] Implement pure function `filter_valid_meter_rows(raw_rdd)` in `src/rdd_ops.py` using `filter()` to discard headers, malformed rows, `"Null"` strings, and negative values ($kwh < 0.0$)
+- [X] T020 [US1] Implement pure function `map_to_household_kwh_pairs(valid_rdd)` in `src/rdd_ops.py` using `map()` to emit `(LCLid, float(kwh))` key-value pairs
+- [X] T021 [US1] Implement pure function `extract_tariff_acorn_tokens(household_rdd)` in `src/rdd_ops.py` using `flatMap()` to tokenize demographic and tariff fields
+- [X] T022 [US1] Implement pure reduction function `find_peak_reading(pair_rdd)` in `src/rdd_ops.py` using `reduce()` with binary maximum comparator
+- [X] T023 [US1] Implement pure grouping function `group_readings_by_household(pair_rdd)` in `src/rdd_ops.py` using `groupByKey().mapValues(list)`
+- [X] T024 [US1] Implement pure aggregation function `sum_kwh_by_household(pair_rdd)` in `src/rdd_ops.py` using `reduceByKey(lambda a, b: a + b)`
+- [X] T025 [US1] Implement pure join & aggregate function `join_and_aggregate_by_tariff(meter_totals_rdd, household_tariff_rdd)` in `src/rdd_ops.py` using `join()`, mapping, and bounded aggregation ($\le 100$ rows collected)
 
 **Checkpoint**: User Story 1 is fully functional and passes all tests locally in `pytest tests/test_rdd_ops.py` in $< 2$ seconds.
 
@@ -84,13 +84,13 @@
 
 ### Tests for User Story 2 ⚠️
 
-- [ ] T026 [P] [US2] Write unit tests in `tests/test_spark_config.py` verifying `get_spark_session(is_local_test=True)` sets `master("local[2]")`, `512m` driver heap, and `spark.ui.enabled="false"`
-- [ ] T027 [P] [US2] Write unit tests in `tests/test_spark_config.py` verifying that reading CSV files with `METER_SCHEMA`, `HOUSEHOLD_SCHEMA`, and `WEATHER_SCHEMA` creates DataFrames with exact expected types and zero `inferSchema` calls
+- [X] T026 [P] [US2] Write unit tests in `tests/test_spark_config.py` verifying `get_spark_session(is_local_test=True)` sets `master("local[2]")`, `512m` driver heap, and `spark.ui.enabled="false"`
+- [X] T027 [P] [US2] Write unit tests in `tests/test_spark_config.py` verifying that reading CSV files with `METER_SCHEMA`, `HOUSEHOLD_SCHEMA`, and `WEATHER_SCHEMA` creates DataFrames with exact expected types and zero `inferSchema` calls
 
 ### Implementation for User Story 2
 
-- [ ] T028 [US2] Validate and refine schema definitions and CSV loader helper utilities in `src/spark_config.py`
-- [ ] T029 [US2] Add schema validation assertions to verify column type matching on ingested DataFrames in `src/spark_config.py`
+- [X] T028 [US2] Validate and refine schema definitions and CSV loader helper utilities in `src/spark_config.py`
+- [X] T029 [US2] Add schema validation assertions to verify column type matching on ingested DataFrames in `src/spark_config.py`
 
 **Checkpoint**: User Stories 1 and 2 work independently with full schema safety.
 
@@ -104,8 +104,8 @@
 
 ### Tests & Verification for User Story 3
 
-- [ ] T030 [P] [US3] Create `tests/test_local_guardrails.py` asserting that running the test suite on mock data does not exceed 500MB memory and executes in $< 3$ seconds
-- [ ] T031 [US3] Verify edge case coverage in `tests/sample_data/sample_meters.csv` and `tests/sample_data/sample_households.csv` (literal `"Null"` strings, negative readings, multi-household distribution, `Std` vs. `ToU` balance)
+- [X] T030 [P] [US3] Create `tests/test_local_guardrails.py` asserting that running the test suite on mock data does not exceed 500MB memory and executes in $< 3$ seconds
+- [X] T031 [US3] Verify edge case coverage in `tests/sample_data/sample_meters.csv` and `tests/sample_data/sample_households.csv` (literal `"Null"` strings, negative readings, multi-household distribution, `Std` vs. `ToU` balance)
 
 **Checkpoint**: Local test guardrails strictly confirmed, ensuring zero host memory thrashing.
 
@@ -119,12 +119,12 @@
 
 ### Implementation for User Story 4
 
-- [ ] T032 [US4] Create notebook `notebooks/01_hdfs_and_rdd_ops.ipynb` with Markdown structure explaining architecture, course milestones, and team roster in bilingual English/Arabic
-- [ ] T033 [US4] Implement Colab setup cells in `notebooks/01_hdfs_and_rdd_ops.ipynb` installing OpenJDK and Apache Hadoop 3.4.1, setting environment variables, and configuring `core-site.xml` (`hdfs://localhost:9000`) and `hdfs-site.xml` (`dfs.replication=1`)
-- [ ] T034 [US4] Implement passwordless SSH, NameNode formatting (`hdfs namenode -format -force`), and HDFS daemon startup (`start-dfs.sh`) in `notebooks/01_hdfs_and_rdd_ops.ipynb`
-- [ ] T035 [US4] Implement Three-Layer HDFS initialization (`hdfs dfs -mkdir -p /raw /cleaned /analytics`) and raw data ingestion (`hdfs dfs -put`) in `notebooks/01_hdfs_and_rdd_ops.ipynb`
-- [ ] T036 [US4] Implement PySpark RDD cells executing all 7 core operations (`filter`, `map`, `flatMap`, `reduce`, `groupByKey`, `reduceByKey`, `join`) directly on HDFS raw blocks in `notebooks/01_hdfs_and_rdd_ops.ipynb`
-- [ ] T037 [US4] Add final verification cells in `notebooks/01_hdfs_and_rdd_ops.ipynb` displaying tariff comparison aggregates and verifying driver memory safety ($\le 100$ rows collected)
+- [X] T032 [US4] Create notebook `notebooks/01_hdfs_and_rdd_ops.ipynb` with Markdown structure explaining architecture, course milestones, and team roster in bilingual English/Arabic
+- [X] T033 [US4] Implement Colab setup cells in `notebooks/01_hdfs_and_rdd_ops.ipynb` installing OpenJDK and Apache Hadoop 3.4.1, setting environment variables, and configuring `core-site.xml` (`hdfs://localhost:9000`) and `hdfs-site.xml` (`dfs.replication=1`)
+- [X] T034 [US4] Implement passwordless SSH, NameNode formatting (`hdfs namenode -format -force`), and HDFS daemon startup (`start-dfs.sh`) in `notebooks/01_hdfs_and_rdd_ops.ipynb`
+- [X] T035 [US4] Implement Three-Layer HDFS initialization (`hdfs dfs -mkdir -p /raw /cleaned /analytics`) and raw data ingestion (`hdfs dfs -put`) in `notebooks/01_hdfs_and_rdd_ops.ipynb`
+- [X] T036 [US4] Implement PySpark RDD cells executing all 7 core operations (`filter`, `map`, `flatMap`, `reduce`, `groupByKey`, `reduceByKey`, `join`) directly on HDFS raw blocks in `notebooks/01_hdfs_and_rdd_ops.ipynb`
+- [X] T037 [US4] Add final verification cells in `notebooks/01_hdfs_and_rdd_ops.ipynb` displaying tariff comparison aggregates and verifying driver memory safety ($\le 100$ rows collected)
 
 **Checkpoint**: Practical Lab 1 Colab notebook is completely self-contained and reproducible.
 
@@ -134,9 +134,9 @@
 
 **Purpose**: Repository audit, hygiene validation, and documentation finalization.
 
-- [ ] T038 [P] Audit Git tracking with `git status` to ensure 0 bytes of large `.csv` or `.parquet` data files are tracked
-- [ ] T039 Execute full local test suite `pytest tests/ -v` and record test run duration and memory consumption
-- [ ] T040 [P] Update `docs/spec-01-architecture.md` with the completed Spec 01 component architecture and Colab execution runbook
+- [X] T038 [P] Audit Git tracking with `git status` to ensure 0 bytes of large `.csv` or `.parquet` data files are tracked
+- [X] T039 Execute full local test suite `pytest tests/ -v` and record test run duration and memory consumption
+- [X] T040 [P] Update `docs/spec-01-architecture.md` with the completed Spec 01 component architecture and Colab execution runbook
 
 ---
 
