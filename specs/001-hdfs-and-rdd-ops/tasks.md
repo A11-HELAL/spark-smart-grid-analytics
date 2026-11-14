@@ -16,11 +16,11 @@
 
 **Purpose**: Initialize directory skeleton, documentation, dependencies, and Git exclusion guardrails.
 
-- [ ] T001 Create project directory structure (`src/`, `notebooks/`, `tests/sample_data/`, `docs/`) per implementation plan
-- [ ] T002 [P] Create Python `.gitignore` in repository root excluding `.agents/`, `.venv/`, `__pycache__/`, `.ipynb_checkpoints/`, and all multi-gigabyte data files (`*.csv`, `*.parquet`, `*.tar.gz`)
-- [ ] T003 [P] Create `requirements.txt` in repository root with `pyspark>=3.4.0` and `pytest>=7.4.0`
-- [ ] T004 Create `src/__init__.py` and `tests/__init__.py` package initializers
-- [ ] T005 [P] Create root `README.md` documenting project overview, team roster (Ahmed Saad, Mohamed Abu-elhajjaj, Shrief Abdelmoati, Moustafa Mahmoud, Sameh Esam), Three-Layer HDFS storage layout (`/raw`, `/cleaned`, `/analytics`), and course checkpoint roadmaps
+- [X] T001 Create project directory structure (`src/`, `notebooks/`, `tests/sample_data/`, `docs/`) per implementation plan
+- [X] T002 [P] Create Python `.gitignore` in repository root excluding `.agents/`, `.venv/`, `__pycache__/`, `.ipynb_checkpoints/`, and all multi-gigabyte data files (`*.csv`, `*.parquet`, `*.tar.gz`)
+- [X] T003 [P] Create `requirements.txt` in repository root with `pyspark>=3.4.0` and `pytest>=7.4.0`
+- [X] T004 Create `src/__init__.py` and `tests/__init__.py` package initializers
+- [X] T005 [P] Create root `README.md` documenting project overview, team roster (Ahmed Saad, Mohamed Abu-elhajjaj, Shrief Abdelmoati, Moustafa Mahmoud, Sameh Esam), Three-Layer HDFS storage layout (`/raw`, `/cleaned`, `/analytics`), and course checkpoint roadmaps
 
 ---
 
@@ -30,15 +30,15 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T006 Create mock smart meter dataset `tests/sample_data/sample_meters.csv` (50 rows total including header `LCLid,day,energy(kWh/hh)`, 40 valid records across 5 households, 5 literal `"Null"` strings, 3 negative readings `kwh < 0.0`, and 2 malformed rows)
-- [ ] T007 [P] Create mock household demographic dataset `tests/sample_data/sample_households.csv` (10 rows total including header `LCLid,stdorToU,Acorn,Acorn_grouped,file`, covering both `"Std"` and `"ToU"` tariffs and ACORN categories)
-- [ ] T008 Implement HDFS path constants in `src/spark_config.py` (`HDFS_BASE_URL = "hdfs://localhost:9000"`, `HDFS_RAW_DIR = "/raw"`, `HDFS_CLEANED_DIR = "/cleaned"`, `HDFS_ANALYTICS_DIR = "/analytics"`)
-- [ ] T009 Implement explicit `StructType` schemas in `src/spark_config.py`:
+- [X] T006 Create mock smart meter dataset `tests/sample_data/sample_meters.csv` (50 rows total including header `LCLid,day,energy(kWh/hh)`, 40 valid records across 5 households, 5 literal `"Null"` strings, 3 negative readings `kwh < 0.0`, and 2 malformed rows)
+- [X] T007 [P] Create mock household demographic dataset `tests/sample_data/sample_households.csv` (10 rows total including header `LCLid,stdorToU,Acorn,Acorn_grouped,file`, covering both `"Std"` and `"ToU"` tariffs and ACORN categories)
+- [X] T008 Implement HDFS path constants in `src/spark_config.py` (`HDFS_BASE_URL = "hdfs://localhost:9000"`, `HDFS_RAW_DIR = "/raw"`, `HDFS_CLEANED_DIR = "/cleaned"`, `HDFS_ANALYTICS_DIR = "/analytics"`)
+- [X] T009 Implement explicit `StructType` schemas in `src/spark_config.py`:
   - `METER_SCHEMA`: `"LCLid: StringType, nullable=False"`, `"tstp: StringType, nullable=False"`, `"energy(kWh/hh): StringType, nullable=True"`
   - `HOUSEHOLD_SCHEMA`: `"LCLid: StringType, nullable=False"`, `"stdorToU: StringType, nullable=False (enum: 'Std' | 'ToU')"`, `"Acorn: StringType, nullable=True"`, `"Acorn_grouped: StringType, nullable=True"`, `"file: StringType, nullable=True"`
   - `WEATHER_SCHEMA`: `"temperature: DoubleType, nullable=True"`, `"humidity: DoubleType, nullable=True"`, `"windSpeed: DoubleType, nullable=True"`, `"time: StringType, nullable=False"`, `"summary: StringType, nullable=True"`
-- [ ] T010 Implement `get_spark_session(app_name, is_local_test)` factory in `src/spark_config.py` with local 8GB guardrails (`master("local[2]")`, `spark.driver.memory="512m"`, `spark.sql.shuffle.partitions="2"`, `spark.ui.enabled="false"`)
-- [ ] T011 Create pytest session fixture in `tests/conftest.py` providing a shared lightweight `SparkSession` using `get_spark_session(is_local_test=True)`
+- [X] T010 Implement `get_spark_session(app_name, is_local_test)` factory in `src/spark_config.py` with local 8GB guardrails (`master("local[2]")`, `spark.driver.memory="512m"`, `spark.sql.shuffle.partitions="2"`, `spark.ui.enabled="false"`)
+- [X] T011 Create pytest session fixture in `tests/conftest.py` providing a shared lightweight `SparkSession` using `get_spark_session(is_local_test=True)`
 
 **Checkpoint**: Foundation ready — memory-safe local test environment and explicit schema definitions verified.
 

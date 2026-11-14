@@ -1,0 +1,67 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Agent directories and cache
+.agents/
+
+# Big Data Files (Constitution Principle I & II: Never commit multi-GB datasets to Git)
+*.csv
+!tests/sample_data/*.csv
+*.parquet
+*.parquet.*
+*.gz
+*.tar.gz
+*.zip
+*.jsonl
+
+# Spark & Hadoop local runtime logs / metastore
+metastore_db/
+derby.log
+checkpoint/
+.checkpoint/
+spark-warehouse/

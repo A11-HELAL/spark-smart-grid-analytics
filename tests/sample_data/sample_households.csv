@@ -1,0 +1,11 @@
+LCLid,stdorToU,Acorn,Acorn_grouped,file
+MAC000001,Std,ACORN-A,Affluent,block_0
+MAC000002,ToU,ACORN-B,Affluent,block_0
+MAC000003,Std,ACORN-E,Comfortable,block_0
+MAC000004,ToU,ACORN-H,Comfortable,block_0
+MAC000005,Std,ACORN-Q,Adversity,block_0
+MAC000006,ToU,ACORN-A,Affluent,block_1
+MAC000007,Std,ACORN-C,Affluent,block_1
+MAC000008,ToU,ACORN-F,Comfortable,block_1
+MAC000009,Std,ACORN-J,Comfortable,block_1
+MAC000010,ToU,ACORN-P,Adversity,block_1
